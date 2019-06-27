@@ -4,16 +4,26 @@
 
 class option
 {
+	using name_pair = std::pair<std::string, std::string>;
+
 private:
-	std::string prefix;
-	std::string name;
+	name_pair name;
+	name_pair short_name;
 	int argument_count;
 
 public:
+	option(name_pair name, int argument_count);
+	option(name_pair name, name_pair short_name, int argument_count);
 	option(std::string prefix, std::string name, int argument_count);
+	option(std::string prefix, std::string name,
+		std::string short_prefix, std::string short_name,
+		int argument_count);
 
 	std::string get_prefix();
 	std::string get_name();
-	std::string get_full_name();
+	std::string get_short_prefix();
+	std::string get_short_name();
+	std::string get_real_name();
+	std::string get_real_short_name();
 	int get_argument_count();
 };
