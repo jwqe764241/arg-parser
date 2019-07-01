@@ -12,7 +12,8 @@ void parser::parse(int argc, char** argv, std::vector<option> options)
 
 auto parser::find(std::string name)
 {
-	auto it = std::find_if(option_map.begin(), option_map.end(), [name](const option& o) {
+	auto it = std::find_if(option_map.begin(), option_map.end(), [name](const std::pair<option, std::vector<std::string>> e) {
+		const option o = e.first;
 		return o.get_name() == name || o.get_short_name() == name;
 	});
 
