@@ -19,11 +19,11 @@ public:
 		std::string short_prefix, std::string short_name,
 		int argument_count);
 
-	std::string get_prefix();
-	std::string get_name();
-	std::string get_short_prefix();
-	std::string get_short_name();
-	std::string get_real_name();
-	std::string get_real_short_name();
-	int get_argument_count();
+	std::string get_prefix() const;
+	std::string get_name() const;
+	std::string get_short_prefix() const;
+	std::string get_short_name() const;
+	std::string get_real_name() const;
+	std::string get_real_short_name() const;
+	int get_argument_count() const;
 };
