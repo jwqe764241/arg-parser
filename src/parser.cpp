@@ -1,32 +1,28 @@
 #include "parser.hpp"
 
-parser::parser(int argc, char** argv, std::initializer_list<option> options)
+parser::parser(int argc, char** argv, std::initializer_list<line_option> options)
 {
 	parse(argc, argv, options);
 }
 
-void parser::parse(int argc, char** argv, std::vector<option> options)
+void parser::parse(int argc, char** argv, std::vector<line_option> options)
 {
 	for (int i = 1; i < argc; ++i)
 	{
 		std::string current_value = argv[i];
 
-		auto it = std::find_if(options.begin(), options.end(), [current_value](const option& o){
-			return o.get_real_name() == current_value || o.get_real_short_name() == current_value;
-		});
+		auto it = find_option(current_value, options);
 
 		if (it != options.end())
 		{
-			option o = *it;
+			line_option option = *it;
 			std::vector<std::string> arguments;
 
-			for (int j = i + 1; j < i + 1 + o.get_argument_count(); ++j)
+			for (int j = i + 1; j < (i + 1 + option.get_argument_count()); ++j)
 			{
 				std::string argument = argv[j];
 
-				auto it = std::find_if(options.begin(), options.end(), [argument](const option& o) {
-					return o.get_real_name() == argument || o.get_real_short_name() == argument;
-				});
+				auto it = find_option(argument, options);
 
 				if (it == options.end())
 				{
@@ -38,24 +34,24 @@ void parser::parse(int argc, char** argv, std::vector<option> options)
 				}
 			}
 
-			add_option(o, arguments);
+			add_option(option, arguments);
 		}
 	}
 }
 
 auto parser::find(std::string name)
 {
-	auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<option, std::vector<std::string>>& e) {
-		const option o = e.first;
+	auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<line_option, std::vector<std::string>>& e) {
+		const line_option o = e.first;
 		return o.get_real_name() == name || o.get_real_short_name() == name;
 	});
 
 	return it;
 }
 
-void parser::add_option(option o, std::vector<std::string> values)
+void parser::add_option(line_option o, std::vector<std::string> values)
 {
-	parsed_option.push_back(std::pair<option, std::vector<std::string>>(o, values));
+	parsed_option.push_back(std::pair<line_option, std::vector<std::string>>(o, values));
 }
 
 
@@ -78,4 +74,13 @@ std::vector<std::string> parser::get_arguments(std::string name)
 	{
 		return {};
 	}
+}
+
+auto find_option(std::string name, std::vector<line_option> options)
+{
+	auto it = std::find_if(options.begin(), options.end(), [&name](const line_option& o) {
+		return o.get_real_name() == name || o.get_real_short_name() == name;
+	});
+
+	return it;
 }

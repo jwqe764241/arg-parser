@@ -2,7 +2,7 @@
 
 #include <string>
 
-class option
+class line_option
 {
 	using name_pair = std::pair<std::string, std::string>;
 
@@ -12,10 +12,10 @@ private:
 	int argument_count;
 
 public:
-	option(name_pair name, int argument_count);
-	option(name_pair name, name_pair short_name, int argument_count);
-	option(std::string prefix, std::string name, int argument_count);
-	option(std::string prefix, std::string name,
+	line_option(name_pair name, int argument_count);
+	line_option(name_pair name, name_pair short_name, int argument_count);
+	line_option(std::string prefix, std::string name, int argument_count);
+	line_option(std::string prefix, std::string name,
 		std::string short_prefix, std::string short_name,
 		int argument_count);
 
