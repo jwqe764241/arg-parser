@@ -44,6 +44,8 @@ void parser::parse(int argc, char** argv, std::vector<line_option> options)
 			}
 
 			add_option(option, arguments);
+
+			i += arguments.size();
 		}
 	}
 }
