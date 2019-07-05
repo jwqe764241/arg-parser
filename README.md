@@ -63,7 +63,7 @@ And now,  just pass argc, argv and option data to parser's constructor.
 int main(int argc, char** argv)
 {
     line_option port_option("-", "port", "-", "p", 1);
-	line_option ip_option("-", "ip", "-", "i", 1);
+    line_option ip_option("-", "ip", "-", "i", 1);
     
     parser parser(argc, argv, {
         port_option,
@@ -78,7 +78,7 @@ That's it. After create parser, just get values with option name. Notice that wh
 int main(int argc, char** argv)
 {
     line_option port_option("-", "port", "-", "p", 1);
-	line_option ip_option("-", "ip", "-", "i", 1);
+    line_option ip_option("-", "ip", "-", "i", 1);
     
     parser parser(argc, argv, {
         port_option,
@@ -89,10 +89,10 @@ int main(int argc, char** argv)
     	Please just read as example.
     */
     std::vector<std::string> ports = parser.get_arguments("-port");
-	std::cout << "port : " << ports[0] << std::endl;
+    std::cout << "port : " << ports[0] << std::endl;
 
-	std::vector<std::string> ip = parser.get_arguments("-ip");
-	std::cout << "ip : " << ip[0] << std::endl;
+    std::vector<std::string> ip = parser.get_arguments("-ip");
+    std::cout << "ip : " << ip[0] << std::endl;
 }
 ```
 
