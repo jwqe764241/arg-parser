@@ -1,5 +1,14 @@
 #include "parser.hpp"
 
+auto find_option(std::string name, std::vector<line_option>& options)
+{
+	auto it = std::find_if(options.begin(), options.end(), [&name](const line_option& o) {
+		return o.get_real_name() == name || o.get_real_short_name() == name;
+	});
+
+	return it;
+}
+
 parser::parser(int argc, char** argv, std::initializer_list<line_option> options)
 {
 	parse(argc, argv, options);
@@ -74,13 +83,4 @@ std::vector<std::string> parser::get_arguments(std::string name)
 	{
 		return {};
 	}
-}
-
-auto find_option(std::string name, std::vector<line_option> options)
-{
-	auto it = std::find_if(options.begin(), options.end(), [&name](const line_option& o) {
-		return o.get_real_name() == name || o.get_real_short_name() == name;
-	});
-
-	return it;
 }
