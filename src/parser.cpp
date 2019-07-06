@@ -27,7 +27,14 @@ void parser::parse(int argc, char** argv, std::vector<line_option> options)
 			line_option option = *it;
 			std::vector<std::string> arguments;
 
-			for (int j = i + 1; j < (i + 1 + option.get_argument_count()); ++j)
+			int range_end = i + 1 + option.get_argument_count();
+
+			if (range_end > argc)
+			{
+				range_end = argc;
+			}
+
+			for (int j = i + 1; j < range_end; ++j)
 			{
 				std::string argument = argv[j];
 
