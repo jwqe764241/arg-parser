@@ -3,7 +3,7 @@
 auto find_option(std::string name, std::vector<line_option>& options)
 {
 	auto it = std::find_if(options.begin(), options.end(), [&name](const line_option& o) {
-		return o.get_real_name() == name || o.get_real_short_name() == name;
+		return o.get_name() == name || o.get_short_name() == name;
 	});
 
 	return it;
@@ -61,7 +61,7 @@ auto parser::find(std::string name)
 {
 	auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<line_option, std::vector<std::string>>& e) {
 		const line_option o = e.first;
-		return o.get_real_name() == name || o.get_real_short_name() == name;
+		return o.get_name() == name || o.get_short_name() == name;
 	});
 
 	return it;
