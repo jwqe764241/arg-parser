@@ -10,17 +10,16 @@ parse command line option
 #### Defining option by default
 
 ```c++
-line_option(prefix, name, argument_count)
+line_option(name, argument_count)
 ```
 
-- prefix : prefix of option like -, /
-- name : name of option like port, ip
+- name : name of option like -port, -ip, /all, /delete and etc...
 - argumnet_count : max argument number of option
 
 #### Defining option with short name
 
 ```c++
-line_option(prefix, name, prefix, short_name, argument_count)
+line_option(name, short_name, argument_count)
 ```
 
 If you set short name, parser will parse option same as full name. Later, you can get arguments using short name.
@@ -46,15 +45,15 @@ Let's say you want to parse port and ip option starts with '-'' and each option 
   You can write like this.
 
 ```c++
-line_option("-", "port", 1);
-line_option("-", "ip", 1);
+line_option("-port", 1);
+line_option("-ip", 1);
 ```
 
 Want to parse with short name? write like this.
 
 ```c++
-line_option("-", "port", "-", "p", 1);
-line_option("-", "ip", "-", "i", 1);
+line_option("-port", "-p", 1);
+line_option("-ip", "-i", 1);
 ```
 
 And now,  just pass argc, argv and option data to parser's constructor.
@@ -62,8 +61,8 @@ And now,  just pass argc, argv and option data to parser's constructor.
 ```c++ 
 int main(int argc, char** argv)
 {
-    line_option port_option("-", "port", "-", "p", 1);
-    line_option ip_option("-", "ip", "-", "i", 1);
+    line_option port_option("-port", "-p", 1);
+    line_option ip_option("-ip", "-i", 1);
     
     parser parser(argc, argv, {
         port_option,
@@ -72,13 +71,13 @@ int main(int argc, char** argv)
 }
 ```
 
-That's it. After create parser, just get values with option name. Notice that when you get values with option name, option name must contain prefix.
+That's it. After create parser, just get values with option name. 
 
 ```c++
 int main(int argc, char** argv)
 {
-    line_option port_option("-", "port", "-", "p", 1);
-    line_option ip_option("-", "ip", "-", "i", 1);
+    line_option port_option("-port", "-p", 1);
+    line_option ip_option("-ip", "-i", 1);
     
     parser parser(argc, argv, {
         port_option,
