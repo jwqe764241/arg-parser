@@ -1,19 +1,22 @@
 #pragma once
 
 #include <string>
-
-class option
+ 
+namespace cmd
 {
-private:
-	std::string name;
-	std::string short_name;
-	int argument_count;
+	class option
+	{
+	private:
+		std::string name;
+		std::string short_name;
+		int argument_count;
 
-public:
-	option(std::string name, int argument_count);
-	option(std::string name, std::string short_name, int argument_count);
+	public:
+		option(std::string name, int argument_count);
+		option(std::string name, std::string short_name, int argument_count);
 
-	std::string get_name() const;
-	std::string get_short_name() const;
-	int get_argument_count() const;
-};
+		std::string get_name() const;
+		std::string get_short_name() const;
+		int get_argument_count() const;
+	};
+}

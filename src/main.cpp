@@ -4,6 +4,8 @@
 
 int main(int argc, char * argv[])
 {
+	using namespace cmd;
+
 	parser parser(argc, argv, {
 		option("-a", 3),
 		option("-b", 2),

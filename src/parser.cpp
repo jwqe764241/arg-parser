@@ -1,95 +1,98 @@
 #include "parser.hpp"
 
-auto find_option(std::string name, std::vector<option>& options)
+auto find_option(std::string name, std::vector<cmd::option>& options)
 {
-	auto it = std::find_if(options.begin(), options.end(), [&name](const option& o) {
+	auto it = std::find_if(options.begin(), options.end(), [&name](const cmd::option& o) {
 		return o.get_name() == name || o.get_short_name() == name;
 	});
 
 	return it;
 }
 
-parser::parser(int argc, char** argv, std::initializer_list<option> options)
+namespace cmd
 {
-	parse(argc, argv, options);
-}
-
-void parser::parse(int argc, char** argv, std::vector<option> options)
-{
-	for (int i = 1; i < argc; ++i)
+	parser::parser(int argc, char** argv, std::initializer_list<option> options)
 	{
-		std::string current_value = argv[i];
+		parse(argc, argv, options);
+	}
 
-		auto it = find_option(current_value, options);
-
-		if (it != options.end())
+	void parser::parse(int argc, char** argv, std::vector<option> options)
+	{
+		for (int i = 1; i < argc; ++i)
 		{
-			option option = *it;
-			std::vector<std::string> arguments;
+			std::string current_value = argv[i];
 
-			int range_end = i + 1 + option.get_argument_count();
+			auto it = find_option(current_value, options);
 
-			if (range_end > argc)
+			if (it != options.end())
 			{
-				range_end = argc;
-			}
+				option option = *it;
+				std::vector<std::string> arguments;
 
-			for (int j = i + 1; j < range_end; ++j)
-			{
-				std::string argument = argv[j];
+				int range_end = i + 1 + option.get_argument_count();
 
-				auto it = find_option(argument, options);
-
-				if (it == options.end())
+				if (range_end > argc)
 				{
-					arguments.push_back(argument);
+					range_end = argc;
 				}
-				else
+
+				for (int j = i + 1; j < range_end; ++j)
 				{
-					break;
+					std::string argument = argv[j];
+
+					auto it = find_option(argument, options);
+
+					if (it == options.end())
+					{
+						arguments.push_back(argument);
+					}
+					else
+					{
+						break;
+					}
 				}
+
+				add_option(option, arguments);
+
+				i += arguments.size();
 			}
-
-			add_option(option, arguments);
-
-			i += arguments.size();
 		}
 	}
-}
 
-auto parser::find(std::string name)
-{
-	auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<option, std::vector<std::string>>& e) {
-		const option o = e.first;
-		return o.get_name() == name || o.get_short_name() == name;
-	});
-
-	return it;
-}
-
-void parser::add_option(option o, std::vector<std::string> values)
-{
-	parsed_option.push_back(std::pair<option, std::vector<std::string>>(o, values));
-}
-
-
-bool parser::has_option(std::string name)
-{
-	auto it = find(name);
-
-	return it != parsed_option.end() ? true : false;
-}
-
-std::vector<std::string> parser::get_arguments(std::string name)
-{
-	auto it = find(name);
-
-	if (it != parsed_option.end())
+	auto parser::find(std::string name)
 	{
-		return it->second;
+		auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<option, std::vector<std::string>>& e) {
+			const option o = e.first;
+			return o.get_name() == name || o.get_short_name() == name;
+		});
+
+		return it;
 	}
-	else
+
+	void parser::add_option(option o, std::vector<std::string> values)
 	{
-		return {};
+		parsed_option.push_back(std::pair<option, std::vector<std::string>>(o, values));
+	}
+
+
+	bool parser::has_option(std::string name)
+	{
+		auto it = find(name);
+
+		return it != parsed_option.end() ? true : false;
+	}
+
+	std::vector<std::string> parser::get_arguments(std::string name)
+	{
+		auto it = find(name);
+
+		if (it != parsed_option.end())
+		{
+			return it->second;
+		}
+		else
+		{
+			return {};
+		}
 	}
 }
