@@ -17,7 +17,7 @@
     <ClCompile Include="src\parser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\line_option.cpp">
+    <ClCompile Include="src\option.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -25,7 +25,7 @@
     <ClInclude Include="include\parser.hpp">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="include\line_option.hpp">
+    <ClInclude Include="include\option.hpp">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>

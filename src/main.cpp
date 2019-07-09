@@ -5,10 +5,10 @@
 int main(int argc, char * argv[])
 {
 	parser parser(argc, argv, {
-		line_option("-a", 3),
-		line_option("-b", 2),
-		line_option("-c", 4),
-		line_option("-d", 1)
+		option("-a", 3),
+		option("-b", 2),
+		option("-c", 4),
+		option("-d", 1)
 	});
 
 	std::vector<std::string> a = parser.get_arguments("-a");
