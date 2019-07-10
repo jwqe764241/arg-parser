@@ -23,25 +23,23 @@ namespace cmd
 			std::string current_value = argv[i];
 
 			auto it = find_option(current_value, options);
-
 			if (it != options.end())
 			{
 				option option = *it;
-				std::vector<std::string> arguments;
 
 				int range_end = i + 1 + option.get_argument_count();
-
 				if (range_end > argc)
 				{
 					range_end = argc;
 				}
+
+				std::vector<std::string> arguments;
 
 				for (int j = i + 1; j < range_end; ++j)
 				{
 					std::string argument = argv[j];
 
 					auto it = find_option(argument, options);
-
 					if (it == options.end())
 					{
 						arguments.push_back(argument);
