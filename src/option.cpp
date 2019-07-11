@@ -12,6 +12,16 @@ namespace cmd
 	{
 	}
 
+	option::option(std::string name)
+		: option(name, 0)
+	{
+	}
+
+	option::option(std::string name, std::string short_name)
+		: option(name, short_name, 0)
+	{
+	}
+
 	std::string option::get_name() const
 	{
 		return name;
