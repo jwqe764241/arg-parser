@@ -19,13 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\option.cpp" />
-    <ClCompile Include="src\parser.cpp" />
+    <ClInclude Include="include\get_option.hpp" />
+    <ClInclude Include="include\src\option.hpp" />
+    <ClInclude Include="include\src\parser.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\option.hpp" />
-    <ClInclude Include="include\parser.hpp" />
+    <ClCompile Include="include\src\option.cpp" />
+    <ClCompile Include="include\src\parser.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

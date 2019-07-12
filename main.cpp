@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-#include "parser.hpp"
+#include "get_option.hpp"
 
 int main(int argc, char * argv[])
 {

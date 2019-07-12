@@ -11,22 +11,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClInclude Include="include\src\option.hpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="src\parser.cpp">
+    </ClInclude>
+    <ClInclude Include="include\src\parser.hpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="src\option.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="include\get_option.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\parser.hpp">
+    <ClCompile Include="include\src\parser.cpp">
       <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="include\option.hpp">
+    </ClCompile>
+    <ClCompile Include="include\src\option.cpp">
       <Filter>소스 파일</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>
