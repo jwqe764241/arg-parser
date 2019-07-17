@@ -24,8 +24,6 @@
     <ClInclude Include="include\src\parser.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\src\option.cpp" />
-    <ClCompile Include="include\src\parser.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

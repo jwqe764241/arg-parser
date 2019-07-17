@@ -20,12 +20,6 @@
     <ClInclude Include="include\get_option.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\src\parser.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="include\src\option.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>
