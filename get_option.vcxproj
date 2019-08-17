@@ -23,9 +23,6 @@
     <ClInclude Include="include\src\option.hpp" />
     <ClInclude Include="include\src\parser.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{AC9DAB88-52CC-488D-91BA-CF0E88820D38}</ProjectGuid>

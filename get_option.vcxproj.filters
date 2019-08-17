@@ -19,7 +19,4 @@
     </ClInclude>
     <ClInclude Include="include\get_option.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
 </Project>
