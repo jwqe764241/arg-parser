@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "option.hpp"
+#include "option_not_found_exception.hpp"
 
 auto find_option(std::string name, std::vector<cmd::option>& options)
 {
@@ -106,7 +107,7 @@ namespace cmd
 			}
 			else
 			{
-				return {};
+				throw option_not_found_exception("can't find " + name, name);
 			}
 		}
 
