@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="include\get_option.hpp" />
     <ClInclude Include="include\src\option.hpp" />
+    <ClInclude Include="include\src\option_not_found_exception.hpp" />
     <ClInclude Include="include\src\parser.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

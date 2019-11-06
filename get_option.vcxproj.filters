@@ -18,5 +18,8 @@
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\get_option.hpp" />
+    <ClInclude Include="include\src\option_not_found_exception.hpp">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
