@@ -8,23 +8,23 @@ namespace cmd
 	class option_not_found_exception : public std::exception
 	{
 	private:
-		std::string msg;
-		std::string option;
+		std::string message;
+		std::string option_name;
 
 	public:
-		option_not_found_exception(const std::string& message, const std::string& option)
-			: msg(msg), option(option)
+		option_not_found_exception(const std::string& message, const std::string& option_name)
+			: message(message), option_name(option_name)
 		{
 		}
 
 		const char* what() const noexcept
 		{
-			return msg.c_str();
+			return message.c_str();
 		}
 
-		const std::string& get_option() const noexcept
+		const std::string& get_option_name() const noexcept
 		{
-			return option;
+			return option_name;
 		}
 	};
 }
