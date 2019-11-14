@@ -5,7 +5,7 @@ parse command line option
 
 ## Usage
 
-### Define option data.
+### 1. Define option data.
 
 #### Defining option by default
 
@@ -26,7 +26,7 @@ If you set short name, parser will parse option same as full name. Later, you ca
 
 
 
-### Parse option.
+### 2. Parse option.
 
 Simply, just create parser with command line arguments and option data.
 
