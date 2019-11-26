@@ -1,4 +1,4 @@
-# get_option
+# get-option
 parse command line option
 
 
