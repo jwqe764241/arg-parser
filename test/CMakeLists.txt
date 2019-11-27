@@ -1,4 +1,4 @@
 project(test)
 
-add_executable(test.exe test_main.cpp)
-target_link_libraries(test.exe PRIVATE catch program)
+add_executable(test test_main.cpp)
+target_link_libraries(test PRIVATE catch program)
