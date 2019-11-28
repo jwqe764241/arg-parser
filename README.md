@@ -10,7 +10,7 @@ parse command line option
 #### Defining option by default
 
 ```c++
-line_option(name, argument_count)
+cmd::option(name, argument_count)
 ```
 
 - name : name of option like -port, -ip, /all, /delete and etc...
@@ -19,7 +19,7 @@ line_option(name, argument_count)
 #### Defining option with short name
 
 ```c++
-line_option(name, short_name, argument_count)
+cmd::option(name, short_name, argument_count)
 ```
 
 If you set short name, parser will parse option same as full name. Later, you can get arguments using short name.
@@ -31,7 +31,7 @@ If you set short name, parser will parse option same as full name. Later, you ca
 Simply, just create parser with command line arguments and option data.
 
 ```c++
-parser(argc, argv, options)
+cmd::parser(argc, argv, options)
 ```
 
 #### How to parse option?
@@ -45,15 +45,15 @@ Let's say you want to parse port and ip option starts with '-'' and each option 
   You can write like this.
 
 ```c++
-line_option("-port", 1);
-line_option("-ip", 1);
+cmd::option("-port", 1);
+cmd::option("-ip", 1);
 ```
 
 Want to parse with short name? write like this.
 
 ```c++
-line_option("-port", "-p", 1);
-line_option("-ip", "-i", 1);
+cmd::option("-port", "-p", 1);
+cmd::option("-ip", "-i", 1);
 ```
 
 And now,  just pass argc, argv and option data to parser's constructor.
@@ -61,10 +61,10 @@ And now,  just pass argc, argv and option data to parser's constructor.
 ```c++ 
 int main(int argc, char** argv)
 {
-    line_option port_option("-port", "-p", 1);
-    line_option ip_option("-ip", "-i", 1);
+    cmd::option port_option("-port", "-p", 1);
+    cmd::option ip_option("-ip", "-i", 1);
     
-    parser parser(argc, argv, {
+    cmd::parser parser(argc, argv, {
         port_option,
         ip_option
     });
@@ -76,10 +76,10 @@ That's it. After create parser, just get values with option name.
 ```c++
 int main(int argc, char** argv)
 {
-    line_option port_option("-port", "-p", 1);
-    line_option ip_option("-ip", "-i", 1);
+    cmd::option port_option("-port", "-p", 1);
+    cmd::option ip_option("-ip", "-i", 1);
     
-    parser parser(argc, argv, {
+    cmd::parser parser(argc, argv, {
         port_option,
         ip_option
     });
