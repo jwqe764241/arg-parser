@@ -93,3 +93,103 @@ TEST_CASE("parse command line argument with multiple value", "[parser]")
 		REQUIRE(d_values[3] == "10");
 	}
 }
+
+TEST_CASE("parse option is more than argument count", "[parser]")
+{
+	using namespace cmd;
+
+	int length = 15;
+	char* arguments[15] = {
+		"name",
+		"-a",
+		"1",
+		"2",
+		"3",
+		"-b",
+		"4",
+		"5",
+		"-c",
+		"6",
+		"-d",
+		"7",
+		"8",
+		"9",
+		"10"
+	};
+
+	parser parser(length, arguments, {
+		option("-a", 2),
+		option("-b", 2),
+		option("-c", 2),
+		option("-d", 2)
+	});
+
+	std::vector<std::string> a_values = parser.get_arguments("-a");
+	std::vector<std::string> b_values = parser.get_arguments("-b");
+	std::vector<std::string> c_values = parser.get_arguments("-c");
+	std::vector<std::string> d_values = parser.get_arguments("-d");
+
+	SECTION("checking parsed arguments size is right")
+	{
+		REQUIRE(a_values.size() == 2);
+		REQUIRE(b_values.size() == 2);
+		REQUIRE(c_values.size() == 1);
+		REQUIRE(d_values.size() == 2);
+	}
+
+	SECTION("checking parsed arguments value is right")
+	{
+		REQUIRE(a_values[0] == "1");
+		REQUIRE(a_values[1] == "2");
+
+		REQUIRE(b_values[0] == "4");
+		REQUIRE(b_values[1] == "5");
+
+		REQUIRE(c_values[0] == "6");
+
+		REQUIRE(d_values[0] == "7");
+		REQUIRE(d_values[1] == "8");
+	}
+}
+
+TEST_CASE("parse exceptional case", "[parser]")
+{
+	using namespace cmd;
+
+	int length = 12;
+	char* arguments[12] = {
+		"name",
+		"-a",
+		"1",
+		"2",
+		"3",
+		"-c",
+		"6",
+		"-d",
+		"7",
+		"8",
+		"9",
+		"10"
+	};
+
+	parser parser(length, arguments, {
+		option("-a", 2),
+		option("-b", 2),
+		option("-c", 2),
+		option("-d", 2)
+		});
+
+	std::vector<std::string> a_values = parser.get_arguments("-a");
+	std::vector<std::string> c_values = parser.get_arguments("-c");
+	std::vector<std::string> d_values = parser.get_arguments("-d");
+
+	SECTION("checking parsed arguments size is right")
+	{
+		REQUIRE(a_values.size() == 2);
+		REQUIRE(!parser.has_option("-b"));
+		REQUIRE(c_values.size() == 1);
+		REQUIRE(d_values.size() == 2);
+
+		REQUIRE_THROWS(parser.get_arguments("-b"));
+	}
+}
