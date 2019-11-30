@@ -94,7 +94,7 @@ namespace cmd
 		{
 			auto it = find(name);
 
-			return it != parsed_option.end() ? true : false;
+			return it != parsed_option.end();
 		}
 
 		std::vector<std::string> get_arguments(std::string name) const
@@ -121,7 +121,7 @@ namespace cmd
 			}
 			else
 			{
-				return {};
+				throw option_not_found_exception("can't find " + name, name);
 			}
 		}
 	};
