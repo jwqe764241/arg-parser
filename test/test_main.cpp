@@ -191,5 +191,6 @@ TEST_CASE("parse exceptional case", "[parser]")
 		REQUIRE(d_values.size() == 2);
 
 		REQUIRE_THROWS(parser.get_arguments("-b"));
+		REQUIRE_THROWS(parser.get_argument_size("-b"));
 	}
 }
