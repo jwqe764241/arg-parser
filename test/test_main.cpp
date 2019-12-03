@@ -194,3 +194,33 @@ TEST_CASE("parse exceptional case", "[parser]")
 		REQUIRE_THROWS(parser.get_argument_size("-b"));
 	}
 }
+
+TEST_CASE("test short name", "[parser]")
+{
+	using namespace cmd;
+
+	int length = 9;
+	char* arguments[9] = {
+		"name",
+		"-a",
+		"1",
+		"-b",
+		"2",
+		"-c",
+		"3",
+		"-d",
+		"4"
+	};
+
+	parser parser(length, arguments, {
+		option("-a", "--a", 1),
+		option("-b", "--b", 1),
+		option("-c", "--c", 1),
+		option("-d", "--d", 1)
+	});
+
+	REQUIRE(parser.get_arguments("--a")[0] == "1");
+	REQUIRE(parser.get_arguments("--b")[0] == "2");
+	REQUIRE(parser.get_arguments("--c")[0] == "3");
+	REQUIRE(parser.get_arguments("--d")[0] == "4");
+}
