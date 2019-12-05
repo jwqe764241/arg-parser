@@ -74,7 +74,7 @@ namespace cmd
 			auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<option, std::vector<std::string>>& e) {
 				const option o = e.first;
 				return o.get_name() == name || o.get_short_name() == name;
-				});
+			});
 
 			return it;
 		}
