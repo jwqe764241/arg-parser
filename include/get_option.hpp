@@ -86,11 +86,17 @@ public:
 
 auto find_option(std::string name, std::vector<cmd::option>& options)
 {
-	auto it = std::find_if(options.begin(), options.end(), [&name](const cmd::option& o) {
-		return o.get_name() == name || o.get_short_name() == name;
-		});
+	for (auto it = options.begin(); it != options.end(); ++it)
+	{
+		const option& o = *it;
 
-	return it;
+		if (o.get_name() == name || o.get_short_name() == name)
+		{
+			return it;
+		}
+	}
+
+	return options.end();
 }
 
 class parser
@@ -143,12 +149,17 @@ private:
 
 	auto find(std::string name) const
 	{
-		auto it = std::find_if(parsed_option.begin(), parsed_option.end(), [name](const std::pair<option, std::vector<std::string>>& e) {
-			const option o = e.first;
-			return o.get_name() == name || o.get_short_name() == name;
-		});
+		for (auto it = parsed_option.begin(); it != parsed_option.end(); ++it)
+		{
+			const option& o = it->first;
 
-		return it;
+			if (o.get_name() == name || o.get_short_name() == name)
+			{
+				return it;
+			}
+		}
+
+		return parsed_option.end();
 	}
 
 	void add_option(option o, std::vector<std::string> values)
