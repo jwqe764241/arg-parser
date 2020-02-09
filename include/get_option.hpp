@@ -164,6 +164,7 @@ private:
 
 	void add_option(option o, std::vector<std::string> values)
 	{
+		assert(!has_option(o.get_name()));
 		parsed_option.push_back(std::pair<option, std::vector<std::string>>(o, values));
 	}
 
