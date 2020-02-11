@@ -9,11 +9,10 @@
 #include <initializer_list>
 #include <iostream>
 
-#define GET_OPTION_NAMESPACE_START namespace cmd {
-#define GET_OPTION_NAMESPACE_END }
+#define COMMANDLINE_NAMESPACE_START namespace commandline {
+#define COMMANDLINE_NAMESPACE_END }
 
-
-GET_OPTION_NAMESPACE_START
+COMMANDLINE_NAMESPACE_START
 
 class option;
 class parser;
@@ -84,7 +83,7 @@ public:
 };
 
 
-auto find_option(std::string name, std::vector<cmd::option>& options)
+auto find_option(std::string name, std::vector<commandline::option>& options)
 {
 	for (auto it = options.begin(); it != options.end(); ++it)
 	{
@@ -210,4 +209,4 @@ public:
 	}
 };
 
-GET_OPTION_NAMESPACE_END
+COMMANDLINE_NAMESPACE_END

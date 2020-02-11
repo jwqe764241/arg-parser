@@ -5,7 +5,7 @@
 
 TEST_CASE("parse command line argument with one value", "[parser]")
 {
-	using namespace cmd;
+	using namespace commandline;
 	
 	int length = 9;
 	char* arguments[9] = {
@@ -35,7 +35,7 @@ TEST_CASE("parse command line argument with one value", "[parser]")
 
 TEST_CASE("parse command line argument with multiple value", "[parser]")
 {
-	using namespace cmd;
+	using namespace commandline;
 
 	int length = 15;
 	char* arguments[15] = {
@@ -96,7 +96,7 @@ TEST_CASE("parse command line argument with multiple value", "[parser]")
 
 TEST_CASE("parse option is more than argument count", "[parser]")
 {
-	using namespace cmd;
+	using namespace commandline;
 
 	int length = 15;
 	char* arguments[15] = {
@@ -154,7 +154,7 @@ TEST_CASE("parse option is more than argument count", "[parser]")
 
 TEST_CASE("parse exceptional case", "[parser]")
 {
-	using namespace cmd;
+	using namespace commandline;
 
 	int length = 12;
 	char* arguments[12] = {
@@ -197,7 +197,7 @@ TEST_CASE("parse exceptional case", "[parser]")
 
 TEST_CASE("test short name", "[parser]")
 {
-	using namespace cmd;
+	using namespace commandline;
 
 	int length = 9;
 	char* arguments[9] = {
