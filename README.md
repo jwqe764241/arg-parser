@@ -1,5 +1,5 @@
-# get-option
-parse command line option
+# command-parser
+library for parsing command line option
 
 
 
@@ -10,7 +10,7 @@ parse command line option
 #### Defining option by default
 
 ```c++
-cmd::option(name, argument_count)
+commandline::option(name, argument_count)
 ```
 
 - name : name of option like -port, -ip, /all, /delete and etc...
@@ -19,7 +19,7 @@ cmd::option(name, argument_count)
 #### Defining option with short name
 
 ```c++
-cmd::option(name, short_name, argument_count)
+commandline::option(name, short_name, argument_count)
 ```
 
 If you set short name, parser will parse option same as full name. Later, you can get arguments using short name.
@@ -31,7 +31,7 @@ If you set short name, parser will parse option same as full name. Later, you ca
 Simply, just create parser with command line arguments and option data.
 
 ```c++
-cmd::parser(argc, argv, options)
+commandline::parser(argc, argv, options)
 ```
 
 #### How to parse option?
@@ -45,15 +45,15 @@ Let's say you want to parse port and ip option starts with '-'' and each option 
   You can write like this.
 
 ```c++
-cmd::option("-port", 1);
-cmd::option("-ip", 1);
+commandline::option("-port", 1);
+commandline::option("-ip", 1);
 ```
 
 Want to parse with short name? write like this.
 
 ```c++
-cmd::option("-port", "-p", 1);
-cmd::option("-ip", "-i", 1);
+commandline::option("-port", "-p", 1);
+commandline::option("-ip", "-i", 1);
 ```
 
 And now,  just pass argc, argv and option data to parser's constructor.
@@ -61,10 +61,10 @@ And now,  just pass argc, argv and option data to parser's constructor.
 ```c++ 
 int main(int argc, char** argv)
 {
-    cmd::option port_option("-port", "-p", 1);
-    cmd::option ip_option("-ip", "-i", 1);
+    commandline::option port_option("-port", "-p", 1);
+    commandline::option ip_option("-ip", "-i", 1);
     
-    cmd::parser parser(argc, argv, {
+    commandline::parser parser(argc, argv, {
         port_option,
         ip_option
     });
@@ -76,10 +76,10 @@ That's it. After create parser, just get values with option name.
 ```c++
 int main(int argc, char** argv)
 {
-    cmd::option port_option("-port", "-p", 1);
-    cmd::option ip_option("-ip", "-i", 1);
+    commandline::option port_option("-port", "-p", 1);
+    commandline::option ip_option("-ip", "-i", 1);
     
-    cmd::parser parser(argc, argv, {
+    commandline::parser parser(argc, argv, {
         port_option,
         ip_option
     });
@@ -102,4 +102,4 @@ port : 8080
 ip : 127.0.0.1
 ```
 ### How to add this in my project?
-Just add files in 'include' folder. This is header only.
+Just add file 'commandline.hpp' in 'include' folder to user project. This is header only library.
