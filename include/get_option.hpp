@@ -14,28 +14,18 @@
 
 COMMANDLINE_NAMESPACE_START
 
-class option;
-class parser;
-class option_not_found_exception;
-
-class option_not_found_exception : public std::exception
+class option_not_found_exception : public std::runtime_error
 {
 private:
-	std::string message;
 	std::string option_name;
 
 public:
 	option_not_found_exception(const std::string& message, const std::string& option_name)
-		: message(message), option_name(option_name)
+		: std::runtime_error(message), option_name(option_name)
 	{
 	}
 
-	const char* what() const noexcept
-	{
-		return message.c_str();
-	}
-
-	const std::string& get_option_name() const noexcept
+	const std::string get_option_name() const noexcept
 	{
 		return option_name;
 	}
@@ -82,20 +72,11 @@ public:
 	}
 };
 
-
 auto find_option(std::string name, std::vector<commandline::option>& options)
 {
-	for (auto it = options.begin(); it != options.end(); ++it)
-	{
-		const option& o = *it;
-
-		if (o.get_name() == name || o.get_short_name() == name)
-		{
-			return it;
-		}
-	}
-
-	return options.end();
+	return std::find_if(options.begin(), options.end(), [&name](const option& o){
+		return o.get_name() == name || o.get_short_name() == name;
+	});
 }
 
 class parser
@@ -148,17 +129,10 @@ private:
 
 	auto find(std::string name) const
 	{
-		for (auto it = parsed_option.begin(); it != parsed_option.end(); ++it)
-		{
-			const option& o = it->first;
-
-			if (o.get_name() == name || o.get_short_name() == name)
-			{
-				return it;
-			}
-		}
-
-		return parsed_option.end();
+		return std::find_if(parsed_option.begin(), parsed_option.end(), [&name](const std::pair<option, std::vector<std::string>>& pair){
+			const option& o = pair.first;
+			return o.get_name() == name || o.get_short_name() == name;
+		});
 	}
 
 	void add_option(option o, std::vector<std::string> values)
