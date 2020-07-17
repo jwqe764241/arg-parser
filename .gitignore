@@ -379,3 +379,6 @@ _deps
 *.vcxproj
 *.filters
 *.user
+
+#cmake
+build
