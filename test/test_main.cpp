@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "get_option.hpp"
+#include "commandline.hpp"
 
 TEST_CASE("parse command line argument with one value", "[parser]")
 {
