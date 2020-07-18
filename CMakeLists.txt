@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(command-parser)
+project(commandline)
 
 add_subdirectory(lib/catch)
 add_subdirectory(include)
